@@ -1,29 +1,34 @@
+// @flow
+
 import { useEffect, useState } from 'react'
 
-import prepareComponent from '../../hoc/prepareComponent'
+import prepareComponent from 'hocs/prepareComponent'
 import SortingVisualizer from './SortingVisualizer'
+import {
+  handleMergeSort,
+  handleRandomIntGenerate,
+  handleResetArray
+} from './handlers'
 
-export const handleRandomIntGenerate = (min, max) =>
-  Math.floor(Math.random() * (max - min + 1) + min)
-
-export const handleResetArray = setArray => (handleRandomIntGenerate): void => {
-  const array = []
-  for (let i = 0; i < 100; i++) {
-    array.push(handleRandomIntGenerate(5, 1000))
-  }
-
-  setArray(array)
+export type Props = {
+  +array: [],
+  +onMergeSort: () => void,
+  +onResetArray: () => void
 }
 
-export const usePrepareComponent = (): void => {
+export const usePrepareComponent = (): Props => {
   const [array, setArray] = useState([])
   useEffect(() => {
-    handleResetArray(setArray)(handleRandomIntGenerate)
+    handleResetArray(setArray)(handleRandomIntGenerate)()
   }, [])
 
   return {
-    array
+    array,
+    onMergeSort: handleMergeSort(array),
+    onResetArray: handleResetArray(setArray)(handleRandomIntGenerate)
   }
 }
 
-export default prepareComponent(usePrepareComponent)(SortingVisualizer)
+export default prepareComponent<any, Props>(usePrepareComponent)(
+  SortingVisualizer
+)

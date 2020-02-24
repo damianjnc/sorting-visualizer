@@ -1,8 +1,7 @@
 // @flow
 
 const primary = {
-  lightBlue: '#14a2e8',
-  japaneseIndigo: '#274060'
+  turquoise: '#40e0d0'
 }
 
 const general = {
