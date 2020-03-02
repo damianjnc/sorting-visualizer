@@ -1,20 +1,21 @@
 // @flow
 
-export function mergeSort(array) {
+export const mergeSort = (array: number[]) => {
   const animations = []
   if (array.length <= 1) return array
   const auxiliaryArray = array.slice()
   mergeSortHelper(array, 0, array.length - 1, auxiliaryArray, animations)
+  console.log('animations', animations)
   return animations
 }
 
-function mergeSortHelper(
+const mergeSortHelper = (
   mainArray,
   startIndex,
   endIndex,
   auxiliaryArray,
   animations
-) {
+) => {
   if (startIndex === endIndex) return
   const middleIndex = Math.floor((startIndex + endIndex) / 2)
   mergeSortHelper(

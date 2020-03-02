@@ -3,8 +3,13 @@
 import React from 'react'
 
 import { ArrayBar, Wrapper } from './styled'
+import { type Props } from '.'
 
-export const SortingVisualizer = ({ array, onMergeSort, onResetArray }) => (
+export const SortingVisualizer = ({
+  array,
+  onMergeSort,
+  onResetArray
+}: Props) => (
   <Wrapper>
     {array.map((value, index) => (
       <ArrayBar className="single-bar" key={index} barHeight={value} />

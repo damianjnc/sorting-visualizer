@@ -5,7 +5,14 @@ import ReactDOM from 'react-dom'
 import App from './app'
 import * as serviceWorker from './serviceWorker'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+const root = document.getElementById('root')
+if (!(root instanceof Element)) {
+  throw new Error(
+    '"patient-tracking" div element not found in the index.html file!'
+  )
+}
+
+ReactDOM.render(<App />, root)
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

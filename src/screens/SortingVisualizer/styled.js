@@ -4,10 +4,9 @@ import styled from 'styled-components'
 
 import colors from 'styles/colors'
 
-const getHeight = ({ barHeight }): string => `height: ${barHeight}px`
-
-export const ArrayBar = styled.div`
-  ${getHeight};
+export const ArrayBar = styled.div.attrs(({ barHeight }) => ({
+  style: { height: `${barHeight}px` }
+}))`
   width: 4px;
   background-color: ${colors.pink};
   display: inline-block;

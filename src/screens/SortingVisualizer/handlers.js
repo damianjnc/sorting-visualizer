@@ -6,10 +6,14 @@ import colors from 'styles/colors'
 const ANIMATION_SPEED = 1
 const NUMBER_OF_ARRAY_BARS = 250
 
-export const handleRandomIntGenerate = (min, max) =>
+type SetArray = () => void
+
+export const handleRandomIntGenerate = (min: number, max: number): number =>
   Math.floor(Math.random() * (max - min + 1) + min)
 
-export const handleResetArray = setArray => handleRandomIntGenerate => (): void => {
+export const handleResetArray = (setArray: SetArray) => (
+  handleRandomIntGenerate: () => number
+) => (): void => {
   const array = []
   for (let i = 0; i < NUMBER_OF_ARRAY_BARS; i++) {
     array.push(handleRandomIntGenerate(5, 800))
@@ -17,7 +21,7 @@ export const handleResetArray = setArray => handleRandomIntGenerate => (): void 
   setArray(array)
 }
 
-export const handleMergeSort = array => () => {
+export const handleMergeSort = (array: []) => (): void => {
   const animations = mergeSort(array)
   for (let i = 0; i < animations.length; i++) {
     const arrayBars = document.getElementsByClassName('single-bar')
